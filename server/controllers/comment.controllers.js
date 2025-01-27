@@ -1,4 +1,4 @@
-import { populate } from "dotenv";
+
 import Blog from "../Schema/Blog.js";
 import Comment from "../Schema/Comment.js";
 import Notification from "../Schema/Notification.js";
