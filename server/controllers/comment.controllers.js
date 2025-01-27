@@ -37,7 +37,7 @@ const AddComment = (req, res) => {
           },
         }
       ).then((blog) => {
-        console.log(blog);
+        // console.log(blog);
       });
       let notificationObj = {
         type: replying_to ? "reply" : "comment",
