@@ -4,8 +4,6 @@ node_modules/
 # Environment variables
 .env
 
-# Firebase
-blogfly-website-firebase-adminsdk-zhh4z-e8c7dc2ed8.json
 
 # Logs
 logs/
