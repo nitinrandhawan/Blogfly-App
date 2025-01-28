@@ -11,38 +11,33 @@ import { tools } from "./tools.component.jsx";
 import axios from "axios";
 import { userContext } from "../App.jsx";
 function BlogEditor() {
-
-  let {blog_id}=useParams()
+  let { blog_id } = useParams();
   let {
     blog,
-    blog: { title, banner, content,tags,des },
+    blog: { title, banner, content, tags, des },
     setBlog,
     TextEditor,
     setTextEditor,
     seteditorState,
- 
   } = useContext(EditorContext);
 
-  let navigate=useNavigate()
+  let navigate = useNavigate();
 
-  
-let {userAuth:{accessToken}}=useContext(userContext)
+  let {
+    userAuth: { accessToken },
+  } = useContext(userContext);
 
- 
   useEffect(() => {
-
     if (!TextEditor.isReady) {
       const editor = new EditorJS({
         holderId: "textEditor",
         data: Array.isArray(content) ? content[0] : content,
         tools: tools,
-        placeholder: "Let's write an awesome story"
+        placeholder: "Let's write an awesome story",
       });
       setTextEditor(editor);
     }
   }, [blog]);
-
-
 
   const handleTitleChange = (e) => {
     let input = e.target;
@@ -66,10 +61,12 @@ let {userAuth:{accessToken}}=useContext(userContext)
 
       if (url) {
         toast.dismiss(LoadingToast);
-    
+
         setBlog({ ...blog, banner: url });
 
         toast.success("Uploaded Successfully");
+      } else {
+        toast.dismiss(LoadingToast);
       }
     }
   };
@@ -78,7 +75,6 @@ let {userAuth:{accessToken}}=useContext(userContext)
       e.preventDefault();
     }
   };
- 
 
   const handlePublishButton = () => {
     if (!banner.length) {
@@ -93,8 +89,8 @@ let {userAuth:{accessToken}}=useContext(userContext)
         .then((data) => {
           if (data.blocks.length) {
             console.log(data);
-            setBlog({...blog,content: data})
-            console.log('content',content);
+            setBlog({ ...blog, content: data });
+            console.log("content", content);
             seteditorState("publish");
           } else {
             return toast.error("Write something in your blog to publish it");
@@ -106,48 +102,54 @@ let {userAuth:{accessToken}}=useContext(userContext)
     }
   };
 
-  const handleSaveDraft=async(e)=>{
-    if(e.target.className.includes("disable")){
+  const handleSaveDraft = async (e) => {
+    if (e.target.className.includes("disable")) {
       return;
     }
-   if(!title.length){
-    return toast.error("Write Title to publish Blog")
-   }
-  
-   let LoadingPublish= toast.loading("Saving Draft...")
-e.target.classList.add("disable")
-
-if(TextEditor.isReady){
-  TextEditor.save().then(async(content)=>{
-    try {
-      const Response=await axios.post("http://localhost:8000/create-blog",{
-        title,banner,des,content,tags,draft:true,id:blog_id
-      },{
-        headers:{
-          'Authorization':`Bearer ${accessToken}`
-        }
-      })
-      console.log(Response.data);
-    toast.dismiss(LoadingPublish)
-    toast.success("Saved")
-    e.target.classList.remove('disable')
-    setTimeout(() => {
-      navigate('/')
-    }, 500);
-    
-      
-    } catch ({response}) {
-    e.target.classList.remove('disable')
-
-    toast.dismiss(LoadingPublish)
-     
-    
-    return toast.error(response.data.error || "Something went wrong")
+    if (!title.length) {
+      return toast.error("Write Title to publish Blog");
     }
-  })
-}
 
-  }
+    let LoadingPublish = toast.loading("Saving Draft...");
+    e.target.classList.add("disable");
+
+    if (TextEditor.isReady) {
+      TextEditor.save().then(async (content) => {
+        try {
+          const Response = await axios.post(
+            "http://localhost:8000/create-blog",
+            {
+              title,
+              banner,
+              des,
+              content,
+              tags,
+              draft: true,
+              id: blog_id,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+          console.log(Response.data);
+          toast.dismiss(LoadingPublish);
+          toast.success("Saved");
+          e.target.classList.remove("disable");
+          setTimeout(() => {
+            navigate("/");
+          }, 500);
+        } catch ({ response }) {
+          e.target.classList.remove("disable");
+
+          toast.dismiss(LoadingPublish);
+
+          return toast.error(response.data.error || "Something went wrong");
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -163,7 +165,9 @@ if(TextEditor.isReady){
           <button className="btn-dark py-2" onClick={handlePublishButton}>
             Publish
           </button>
-          <button className="btn-light py-2" onClick={handleSaveDraft}>Save Draft</button>
+          <button className="btn-light py-2" onClick={handleSaveDraft}>
+            Save Draft
+          </button>
         </div>
       </nav>
 
@@ -186,7 +190,7 @@ if(TextEditor.isReady){
               </label>
             </div>
             <textarea
-            defaultValue={title}
+              defaultValue={title}
               placeholder="Blog Title"
               className="text-4xl font-medium w-full h-20 outline-none resize-none leading-tight placeholder:opacity-40"
               onKeyDown={handleTitleKeyDown}
@@ -202,6 +206,3 @@ if(TextEditor.isReady){
 }
 
 export default BlogEditor;
-
-
-

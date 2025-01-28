@@ -139,6 +139,7 @@ function HomePage() {
               <Loader />
             ) : Blog.results.length ? (
               Blog.results.map((blog, i) => {
+                
                 return <BlogPostCard content={blog} index={i} key={i} />;
               })
 

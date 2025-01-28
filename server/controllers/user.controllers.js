@@ -192,7 +192,12 @@ const uploadBanner=async(req,res)=>{
   const filePath=req.file.path
  console.log('file path:',filePath);
 const result=await  uploadOnCloudinary(filePath)
-return res.status(200).json({ url: result })
+if(result==null){
+  console.log('file is not uploaded on cloudinary');
+  return res.status(400).json({ url: 'file is not uploaded on cloudinary' });
+}else{
+  return res.status(200).json({ url: result })
+}
 }
 
 export { signUp, signIn, googleAuth,uploadBanner };
