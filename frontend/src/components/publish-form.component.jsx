@@ -66,7 +66,7 @@ return toast.error("Write description, within 200 words to publish Blog")
 e.target.classList.add("disable")
 
 try {
-  const Response=await axios.post("http://localhost:8000/create-blog",{
+  const Response=await axios.post("https://blogfly-app-2.onrender.com/create-blog",{
     title,banner,des,content,tags,draft:false,id: blog_id
   },{
     headers:{

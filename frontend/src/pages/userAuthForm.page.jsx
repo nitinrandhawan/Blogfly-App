@@ -18,7 +18,7 @@ function UserAuthForm({ type }) {
 
   const sendDataToServer = (route, data) => {
     axios
-      .post(`http://localhost:8000/${route}`, data)
+      .post(`https://blogfly-app-2.onrender.com/${route}`, data)
       .then(function ({ data }) {
         
         StoreSession("user", data);

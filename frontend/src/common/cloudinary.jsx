@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 export const uploadImage=async(img)=>{
     try {
-        const response = await axios.post('http://localhost:8000/get-upload-url', img, {
+        const response = await axios.post('https://blogfly-app-2.onrender.com/get-upload-url', img, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

@@ -39,7 +39,7 @@ function Editor() {
     }
 
     axios
-      .post("http://localhost:8000/get-blog", {
+      .post("https://blogfly-app-2.onrender.com/get-blog", {
         blog_id,
         draft: true,
         mode: "edit",

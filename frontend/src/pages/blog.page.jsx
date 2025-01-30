@@ -67,7 +67,7 @@ let {_id, title,banner,des,author:{personal_info:{profile_img,fullname,username:
 
 const fetchBlogPageData=async()=>{
     try {      
-      const {data}=await axios.post(`http://localhost:8000/get-blog`,{blog_id})
+      const {data}=await axios.post(`https://blogfly-app-2.onrender.com/get-blog`,{blog_id})
       console.log('blog page id',blog_id);
       console.log('blog.id',data._id);
       
@@ -81,7 +81,7 @@ const fetchBlogPageData=async()=>{
       console.log('Check Blog id',BlogData._id);
 
 
-   axios.post('http://localhost:8000/search-blogs',{tag: data.tags[0], limit:6,eliminate_blog: blog_id}).then(({data})=>{
+   axios.post('https://blogfly-app-2.onrender.com/search-blogs',{tag: data.tags[0], limit:6,eliminate_blog: blog_id}).then(({data})=>{
 
       setSimilarBlogs(data)
     }).catch(err=>{console.log(err.message);

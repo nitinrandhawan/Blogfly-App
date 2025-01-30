@@ -43,7 +43,7 @@ else if(comment.trim() !== ""){
  setloading ? setloading(true) :""
   axios
   .post(
-    "http://localhost:8000/add-comment",
+    "https://blogfly-app-2.onrender.com/add-comment",
     { blog_id, blog_author, comment : comment.trim(),replying_to:replyingTo },
     {
       headers: { Authorization: `Bearer ${accessToken}` },

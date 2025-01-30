@@ -49,7 +49,7 @@ let {personal_info:{fullname,bio,username: profile_username,profile_img},account
 
 const fetchUserProfile=async()=>{
     try {
-      let {data}=  await axios.post('http://localhost:8000/search-profile',{username:profile_id})
+      let {data}=  await axios.post('https://blogfly-app-2.onrender.com/search-profile',{username:profile_id})
       console.log(data);
       setProfileData(data)
       setprofileLoaded(profile_id)
@@ -64,7 +64,7 @@ const fetchUserProfile=async()=>{
 const getBlogs=({page = 1,user_id}) =>{
   user_id= user_id===undefined ? blogs.user_id : user_id;
 
-  axios.post('http://localhost:8000/search-blogs',{author:user_id,
+  axios.post('https://blogfly-app-2.onrender.com/search-blogs',{author:user_id,
     page,limit:6
   }).then(async ({data})=>{
     console.log('data',data);

@@ -16,7 +16,7 @@ export const fetchComments = async ({
   let res;
   
   await axios
-    .post("http://localhost:8000/get-blog-comment", { blog_id, skip })
+    .post("https://blogfly-app-2.onrender.com/get-blog-comment", { blog_id, skip })
     .then(({ data }) => {
       console.log(data);
       

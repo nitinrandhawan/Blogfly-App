@@ -20,7 +20,7 @@ function SearchPage() {
 
   const searchBlog = async ({ page = 1, create_new_arr = false }) => {
     try {
-      const { data } = await axios.post("http://localhost:8000/search-blogs", {
+      const { data } = await axios.post("https://blogfly-app-2.onrender.com/search-blogs", {
         page,
         query,
       });
@@ -42,7 +42,7 @@ function SearchPage() {
 
   const fetchUser = async () => {
     try {
-      const { data: { users }} = await axios.post("http://localhost:8000/search-user", {query});
+      const { data: { users }} = await axios.post("https://blogfly-app-2.onrender.com/search-user", {query});
     
       setUsers(users);
     } catch (error) {

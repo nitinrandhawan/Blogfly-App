@@ -117,7 +117,7 @@ function BlogEditor() {
       TextEditor.save().then(async (content) => {
         try {
           const Response = await axios.post(
-            "http://localhost:8000/create-blog",
+            "https://blogfly-app-2.onrender.com/create-blog",
             {
               title,
               banner,

@@ -29,7 +29,7 @@ function HomePage() {
 
   const fetchedLatestBlogs = async ({page=1}) => {
     try {
-      const {data} = await axios.post("http://localhost:8000/latest-blogs",{page});
+      const {data} = await axios.post("https://blogfly-app-2.onrender.com/latest-blogs",{page});
       console.log(data);
       let formatedData= await FilterPaginationData({
         state:Blog,
@@ -47,7 +47,7 @@ function HomePage() {
   
   const fetchedBlogsByCategory = async ({page=1}) => {
     try {
-      const {data} = await axios.post("http://localhost:8000/search-blogs", {
+      const {data} = await axios.post("https://blogfly-app-2.onrender.com/search-blogs", {
         tag: pageState,page
       });
       let formatedData= await FilterPaginationData({
@@ -65,7 +65,7 @@ function HomePage() {
   };
   const fetchedTrendingBlogs = async () => {
     try {
-      const Response = await axios.get("http://localhost:8000/trending-blogs");
+      const Response = await axios.get("https://blogfly-app-2.onrender.com/trending-blogs");
       console.log("Trending blogs", Response.data.blogs);
       setTrendingBlog(Response.data.blogs);
     } catch (error) {
@@ -90,7 +90,7 @@ function HomePage() {
   // console.log(e.target.innerHTML);
   // try {
   //   const filter = String(e.target.innerHTML);
-  //   const Response=await axios.get('http://localhost:8000/latest-blogs',{ filter  })
+  //   const Response=await axios.get('https://blogfly-app-2.onrender.com/latest-blogs',{ filter  })
   //   console.log(Response.data)
   //   setBlog(Response.data)
   //   console.log('filter',Blog);
@@ -102,7 +102,7 @@ function HomePage() {
   const handleFieldItem = async (e) => {
     // try {
     //   const filter = String(e.target.innerHTML);
-    //   const response = await axios.get('http://localhost:8000/latest-blogs', {
+    //   const response = await axios.get('https://blogfly-app-2.onrender.com/latest-blogs', {
     //     filter: filter // Ensure filter is a valid string
     //   }, {
     //     headers: {

@@ -72,7 +72,7 @@ const loadReplies=({skip=0,currentIndex=index})=>{
 hideReplies()
 setloading(true)
 if(commentsArr[currentIndex].children.length){
-  axios.post("http://localhost:8000/get-replies",{_id: commentsArr[currentIndex]._id,skip})
+  axios.post("https://blogfly-app-2.onrender.com/get-replies",{_id: commentsArr[currentIndex]._id,skip})
 .then(({data:{replies}})=>{
   console.log('replies',replies);
   
@@ -101,7 +101,7 @@ if(commentsArr[currentIndex].children.length){
   const deleteComment=(e)=>{
 e.target.setAttribute("disabled",true)
 console.log('clicked');
-axios.post('http://localhost:8000/delete-comment',{_id},{
+axios.post('https://blogfly-app-2.onrender.com/delete-comment',{_id},{
   headers: {
     Authorization: `Bearer ${accessToken}`,
   },

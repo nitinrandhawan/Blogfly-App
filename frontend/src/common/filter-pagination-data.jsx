@@ -13,7 +13,7 @@ export async function FilterPaginationData({
     obj = { ...state, results: [...state.results, ...data], page: page };
   } else {
     await axios
-      .post(`http://localhost:8000/${countRoute}`, data_to_send)
+      .post(`https://blogfly-app-2.onrender.com/${countRoute}`, data_to_send)
       .then(({ data: { totalDocs } }) => {
         console.log("count", totalDocs);
         obj = { results: data, page: 1, totalDocs };

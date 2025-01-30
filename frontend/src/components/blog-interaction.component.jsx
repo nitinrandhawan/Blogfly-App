@@ -32,7 +32,7 @@ function BlogInteraction() {
     if (accessToken) {
       axios
         .post(
-          "http://localhost:8000/like-blog",
+          "https://blogfly-app-2.onrender.com/like-blog",
           { _id, isLikedByUser: isLiked },
           {
             headers: {
@@ -58,7 +58,7 @@ function BlogInteraction() {
     if (accessToken) {
       axios
         .post(
-          `http://localhost:8000/isliked-by-user`,
+          `https://blogfly-app-2.onrender.com/isliked-by-user`,
           { _id },
           {
             headers: {
