@@ -38,3 +38,6 @@ app.use("/", blogRoute);
 
 import commentRoute from "./routes/comment.routes.js";
 app.use("/", commentRoute);
+
+//ping
+app.get('/ping', (req, res) => res.status(200).send('Pong!'));
